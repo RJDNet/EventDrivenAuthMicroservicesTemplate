@@ -1,0 +1,20 @@
+# # Ignore everything
+# **
+
+# # Allow files and directories
+# !/bin/Release
+
+.vs
+.vscode
+
+./clients/solidclient/node_modules
+./clients/solidclient/dist
+./clients/solidclient/.dockerignore
+./clients/solidclient/Dockerfile
+./clients/solidclient/.git
+
+./clients/reactclient/node_modules
+./clients/reactclient/dist
+./clients/reactclient/.dockerignore
+./clients/reactclient/Dockerfile
+./clients/reactclient/.git

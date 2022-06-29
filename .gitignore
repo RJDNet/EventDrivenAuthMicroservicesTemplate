@@ -1,0 +1,24 @@
+.git
+
+.vscode
+.vs
+
+node_modules
+
+obj
+bin
+build
+dist
+
+# API Gateway
+#/server/apigateway/bin
+#/server/apigateway/.vs
+#/server/apigateway/.vscode
+#/server/apigateway/obj
+
+# Microservices
+
+# Web Client
+#reverseproxy/clients/solidclient/node_modules
+#reverseproxy/clients/solidclient/build
+#reverseproxy/clients/solidclient/dist
