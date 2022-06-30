@@ -43,9 +43,9 @@ Event Driven
 # General
 cd reverseproxy/clients/reactclient
 cd server/apigateway/server
-cd server/microservices/csharpmicroservice
-cd server/microservices/nodemicroservice
-cd server/microservices/pythonmicroservice
+cd server/microservices/csharpmicroservice/server
+cd server/microservices/nodemicroservice/server
+cd server/microservices/pythonmicroservice/server
 
 yarn start
 dotnet run

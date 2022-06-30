@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using ApiGateway.Models;
-using ApiGateway.Services;
 
 namespace ApiGateway.Controllers;
 
@@ -12,32 +11,15 @@ public class AuthCookiesController : ControllerBase
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly ILogger<AuthCookiesController> _logger;
-    private readonly IRpcClientService _rpcClient;
 
     public AuthCookiesController(
         SignInManager<IdentityUser> signInManager, 
         UserManager<IdentityUser> userManager,
-        ILogger<AuthCookiesController> logger,
-        IRpcClientService rpcClient
+        ILogger<AuthCookiesController> logger
     ) {
         _signInManager = signInManager;
         _userManager = userManager;
         _logger = logger;
-        _rpcClient = rpcClient;
-    }
-
-    // POST: api/auth/authtester
-    [HttpPost]
-    // [Authorize]
-    public IActionResult AuthTester([FromBody] UserDataModel Auth) {
-        _logger.LogInformation("AuthCookiesController Test.");
-
-        // var response = _rpcClient.SendRpcMessage("Test Rpc Message!!!!");
-        // _logger.LogInformation($"Message Received: {response}");
-
-        _rpcClient.SendMessage("Test Message!!!!");
-
-        return Ok(new { Username = Auth.Username, Password = Auth.Password } );
     }
 
     // POST: api/auth/login
@@ -49,7 +31,12 @@ public class AuthCookiesController : ControllerBase
 
             if(result.Succeeded) {
                 _logger.LogInformation("User Login Successful.");
-                return Ok(new { Message = "User Login Successful." } );
+                return Ok(new { 
+                    Username = Auth.Username, 
+                    Password = Auth.Password, 
+                    Message = "User Login Successful.",
+                    LoggedIn = true
+                });
             }
 
             _logger.LogInformation("User Login Failed.");
@@ -74,7 +61,12 @@ public class AuthCookiesController : ControllerBase
                 await _signInManager.SignOutAsync();
 
                 _logger.LogInformation("User Logout Successful.");
-                return Ok(new { Message = "User Logout Successful." } );
+                return Ok(new { 
+                    Message = "User Logout Successful.",
+                    Username = "",
+                    Password = "",
+                    LoggedIn = false 
+                });
             }
             catch 
             {
@@ -92,14 +84,23 @@ public class AuthCookiesController : ControllerBase
     public async Task<IActionResult> Register([FromBody] UserDataModel Auth) {
         try 
         {
-            var user = new IdentityUser { UserName = Auth.Username, Email = Auth.Username };
+            var user = new IdentityUser { UserName = Auth.Username, Email = Auth.Username};
             var result = await _userManager.CreateAsync(user, Auth.Password);
 
             if (result.Succeeded) {
-                await _signInManager.SignInAsync(user, false);
-
                 _logger.LogInformation("User Registration Successful.");
-                return Ok(new { Message = "User Registration Successful." } );
+                
+                var logInResult = await _signInManager.PasswordSignInAsync(Auth.Username, Auth.Password, false, false);
+
+                if(logInResult.Succeeded) {
+                    _logger.LogInformation("User Login Successful.");
+                    return Ok(new { 
+                        Message = "User Registration Successful and User Login Successful.",
+                        Username = Auth.Username,
+                        Password = Auth.Password,
+                        LoggedIn = true 
+                    });
+                }
             }
 
             _logger.LogInformation("User Registration Failed.");
@@ -128,7 +129,12 @@ public class AuthCookiesController : ControllerBase
 
                 if(result.Succeeded) {
                     _logger.LogInformation("User Delete Successful.");
-                    return Ok(new { Message = "User Delete Successful." } );
+                    return Ok(new { 
+                        Message = "User Delete Successful.",
+                        Username = "",
+                        Password = "",
+                        LoggedIn = false 
+                    });
                 }
 
                 _logger.LogInformation("User Delete Failed.");

@@ -19,7 +19,7 @@ export async function httpFetchNoResData<Res>(url: string, method: HttpMethod, d
   }
 }
 
-export async function httpFetch<Req, Res>(url: string, method: HttpMethod, data: Req): Promise<Res> {      
+export async function httpFetch<Req, Res>(url: string, method: HttpMethod, data?: Req): Promise<Res> {      
   const headers: RequestInit = setupHeaders<Req>(method, data);
 
   try {

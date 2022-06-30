@@ -1,7 +1,6 @@
 import { 
     HttpMethod, 
-    httpFetch,
-    httpFetchNoResData
+    httpFetch
 } from "../../Common/Utils/HttpUtils";
 
 interface IAuthReq {
@@ -9,35 +8,17 @@ interface IAuthReq {
     password: string;
 }
   
-export interface IAuthTesterRes {
-    username: string;
-    password: string;
+export interface IAuthRes {
+    username?: string;
+    password?: string;
+    message: string;
+    loggedIn?: boolean;
 }
-
-export interface IAuthLoginRes extends IAuthTesterRes {
-    message?: string;
-}
-
-export interface IAuthRegisterRes extends IAuthTesterRes {
-    message?: string;
-}
-
-export interface IAuthDeleteUserRes extends IAuthTesterRes {}
 
 const authUrl: string = 'api/authcookies';
 
-export async function testerData(data: IAuthReq): Promise<IAuthTesterRes> {
-    const result: IAuthTesterRes = await httpFetch<IAuthReq, IAuthTesterRes>(
-        `${authUrl}/authtester`, 
-        HttpMethod.POST,
-        data
-    );
-
-    return result;
-}
-
-export async function logInData(data: IAuthReq): Promise<IAuthLoginRes> {
-    const result: IAuthLoginRes = await httpFetch<IAuthReq, IAuthLoginRes>(
+export async function logInData(data: IAuthReq): Promise<IAuthRes> {
+    const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/login`, 
         HttpMethod.POST,
         data
@@ -46,12 +27,17 @@ export async function logInData(data: IAuthReq): Promise<IAuthLoginRes> {
     return result;
 }
 
-export function logOutData(): void {
-    httpFetchNoResData(`${authUrl}/logout`, HttpMethod.POST);
+export async function logOutData(): Promise<IAuthRes> {
+    const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
+        `${authUrl}/logout`, 
+        HttpMethod.POST
+    );
+
+    return result;
 }
 
-export async function registerData(data: IAuthReq): Promise<IAuthRegisterRes> {
-    const result: IAuthRegisterRes = await httpFetch<IAuthReq, IAuthRegisterRes>(
+export async function registerData(data: IAuthReq): Promise<IAuthRes> {
+    const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/register`, 
         HttpMethod.POST,
         data
@@ -60,10 +46,12 @@ export async function registerData(data: IAuthReq): Promise<IAuthRegisterRes> {
     return result;
 }
 
-export function deleteUserData(data: IAuthReq): void {
-    httpFetchNoResData<IAuthDeleteUserRes>(
+export async function deleteUserData(data: IAuthReq): Promise<IAuthRes> {
+    const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/deleteuser`, 
         HttpMethod.DELETE, 
         data
     );
+
+    return result;
 }
