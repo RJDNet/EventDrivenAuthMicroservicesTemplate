@@ -10,8 +10,7 @@ public class RpcClientBackgroundService : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        int sleepTime = 5000; // in mills
-        //Task.Delay(sleepTime).Wait();
+        int sleepTime = 5000;
         Thread.Sleep(sleepTime);
 
         _messageBroker.InitialiseConnection();

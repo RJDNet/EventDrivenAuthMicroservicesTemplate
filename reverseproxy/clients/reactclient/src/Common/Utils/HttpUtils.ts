@@ -40,19 +40,15 @@ export async function httpFetch<Req, Res>(url: string, method: HttpMethod, data?
 
 function setupHeaders<Req>(method: HttpMethod, data?: Req): RequestInit {
   const headers: RequestInit = {
-    method: method, // *GET, POST, PUT, DELETE, etc.
+    method: method,
     headers: {
       'Content-Type': 'application/json',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
       'X-XSRF-TOKEN': getCsrfTokenFromCookie("XSRF-TOKEN"),
       'X-Forwarded-Host': host
     },
-    body: JSON.stringify(data), // body data type must match "Content-
-    mode: 'cors', // no-cors, *cors, same-origin
-    //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'include', // include, *same-origin, omit
-    //redirect: 'follow', // manual, *follow, error
-    //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data),
+    mode: 'cors',
+    credentials: 'include',
   }
 
   return headers;

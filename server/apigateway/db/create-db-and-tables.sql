@@ -13,9 +13,6 @@ BEGIN
 END;
 GO
 
--- BEGIN TRANSACTION;
--- GO
-
 CREATE TABLE [AspNetRoles] (
     [Id] nvarchar(450) NOT NULL,
     [Name] nvarchar(256) NULL,
@@ -118,6 +115,3 @@ GO
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20220331212938_InitialCreate', N'6.0.3');
 GO
-
--- COMMIT;
--- GO

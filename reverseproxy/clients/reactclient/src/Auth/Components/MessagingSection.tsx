@@ -1,6 +1,9 @@
+import { 
+    sendMessageData, 
+    sendRpcMessageData 
+} from "../DataServices/MessagingTestDataService";
 import { Button } from "../../Common/Components/Button";
 import { HeaderOne } from "../../Common/Components/HeaderOne";
-import { sendMessageData, sendRpcMessageData } from "../DataServices/MessagingTestDataService";
 
 interface IMessagingSectionProps {
     buttonsDisabled: (bool: boolean) => void;

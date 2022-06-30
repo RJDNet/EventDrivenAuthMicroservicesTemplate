@@ -1,10 +1,8 @@
-#!/usr/bin/env node
 var amqp = require('amqplib/callback_api');
 
 const topics = ['csharpmicroservice.test1', 'csharpmicroservice.test2'];
 const exchangeName = 'micro_exchange';
 const queueName = 'rpc_queue';
-//const host = 'localhost';
 const host = 'messagebroker';
 
 const opt = { credentials: require('amqplib').credentials.plain('admin', 'admin') }

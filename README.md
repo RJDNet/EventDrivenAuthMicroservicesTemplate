@@ -32,10 +32,11 @@ Note: Often times, an abstraction over a message broker like MassTransit might b
 # How to use
 
 ### Start Up
-Have Docker Desktop installed on your machine.
-From root folder (the folder with the docker-compose.yml file), run command: docker compose up
+- Have Docker Desktop installed on your machine.
+- From root folder (the folder with the docker-compose.yml file), run command: docker compose up
 Wait 1 minute for everything to startup (database population and services currently wait a period of time to start).
--Navigate to http://localhost:3000 in your browser. 
+- Navigate to http://localhost:3000 in your browser.
+- Use Messaging sections & Auth sections, witness logging in terminal.
 
 ### Shut Down
 Ctrl-c the terminal which is running docker compose.

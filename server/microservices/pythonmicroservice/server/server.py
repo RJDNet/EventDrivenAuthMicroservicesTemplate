@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pika
 
 topics = {'csharpmicroservice.test1','csharpmicroservice.test2'}
@@ -6,7 +5,6 @@ exchangeName = 'micro_exchange'
 queueName = 'rpc_queue'
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-                                        # host = 'localhost', 
                                         host = 'messagebroker', 
                                         port = 5672, 
                                         credentials = pika.PlainCredentials('admin', 'admin')

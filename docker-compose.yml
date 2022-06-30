@@ -20,9 +20,6 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5000
       - ASPNETCORE_ENVIRONMENT=Development
-      # - ClientId=
-      # - ClientSecret=
-      # - DefaultConnection=
     expose:
       - 5000
     depends_on:
@@ -38,17 +35,9 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
-    # ports:
-    #   - 5672:5672
-    #   - 15672:15672
     expose:
       - 5672
       - 15672
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:15672"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
 
   # Microservices
 
@@ -59,16 +48,11 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:5002
       - ASPNETCORE_ENVIRONMENT=Development
-      # - ClientId=
-      # - ClientSecret=
-      # - DefaultConnection=
     expose:
       - 5002
     depends_on:
       - messagebroker
       - apigateway
-      # messagebroker:
-      #   condition: service_healthy
 
   pythonmicroservice:
     build: ./server/microservices/pythonmicroservice/server
@@ -106,39 +90,3 @@ services:
     # In production, create volume for persisting db data.
     # volumes:
       # - apigatewaydb: ./var/lib/docker/volumes/apigatewaydb/_data
-
-  # csharpmicroservicedb:
-  #   build: ./server/microservices/csharpmicroservicedb/db
-  #   container_name: csharpmicroservicedb
-  #   restart: always
-  #   environment:
-  #     - SA_PASSWORD=<your_strong_password>
-  #     - ACCEPT_EULA=Y
-  #   expose: 
-  #     - 4002
-  #   volumes:
-  #     - ./csharpmicroservicedb
-
-  # pythonmicroservicedb:
-    # build: ./server/microservices/pythonmicroservicedb/db
-    # container_name: pythonmicroservicedb
-    # restart: always
-    # environment:
-      # - SA_PASSWORD=<your_strong_password>
-      # - ACCEPT_EULA=Y
-    # expose: 
-    #   - 4003
-    # volumes:
-      # - ./pythonmicroservicedb
-
-  # nodemicroservicedb:
-    # build: ./server/microservices/nodemicroservicedb/db
-    # container_name: nodemicroservicedb
-    # restart: always
-    # environment:
-    #   - SA_PASSWORD=<your_strong_password>
-    #   - ACCEPT_EULA=Y
-    # expose: 
-    #   - 4004
-    # volumes:
-    #   - ./nodemicroservicedb

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Concurrent;
-using System.Runtime.Serialization;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -28,8 +26,7 @@ public class RpcClientService : IRpcClientService
 
     public void InitialiseConnection() {
         var factory = new ConnectionFactory()  
-        {  
-            // HostName = "localhost",  
+        {   
             HostName = "messagebroker", 
             UserName = "admin",  
             Password = "admin",  

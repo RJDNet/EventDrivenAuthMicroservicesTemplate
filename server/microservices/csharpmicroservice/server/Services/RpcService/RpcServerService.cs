@@ -1,8 +1,6 @@
-using System;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
-using System.Runtime.Serialization;
 
 namespace CSharpMicroservice.Services;
 
@@ -25,7 +23,6 @@ public class RpcServerService : IRpcServerService
     public void InitialiseConnection() {
         var factory = new ConnectionFactory()
         {
-            // HostName = "localhost",
             HostName = "messagebroker", 
             UserName = "admin",
             Password = "admin",
@@ -35,7 +32,6 @@ public class RpcServerService : IRpcServerService
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
 
-        // Topics
         _channel.ExchangeDeclare(
             exchange: "micro_exchange", 
             type: "topic"
@@ -50,7 +46,6 @@ public class RpcServerService : IRpcServerService
         );
         _channel.BasicQos(0, 1, false);
 
-        // Topics
         foreach(string bindingKey in _topics)
         {
             _channel.QueueBind(queue: "rpc_queue",

@@ -1,7 +1,7 @@
-import { Button } from "../../Common/Components/Button";
-import { HeaderOne } from "../../Common/Components/HeaderOne";
-import { Paragraph } from "../../Common/Components/Paragraph";
-import { getCsrfTokenData } from "../DataServices/CsrfTokenDataService";
+import { getCsrfTokenData } from '../DataServices/CsrfTokenDataService';
+import { Button } from '../../Common/Components/Button';
+import { HeaderOne } from '../../Common/Components/HeaderOne';
+import { Paragraph } from '../../Common/Components/Paragraph';
 
 interface ICsrfSectionProps {
     buttonsDisabled: (bool: boolean) => void;

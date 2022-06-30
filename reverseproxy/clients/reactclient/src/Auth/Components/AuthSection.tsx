@@ -1,19 +1,19 @@
 import { 
     useState,
     useEffect 
-} from "react";
+} from 'react';
 
-import { Button } from "../../Common/Components/Button";
-import { HeaderOne } from "../../Common/Components/HeaderOne";
-import { Paragraph } from "../../Common/Components/Paragraph";
-import { Span } from "../../Common/Components/Span";
 import {
     IAuthRes,
     deleteUserData,
     logInData,
     logOutData,
     registerData
-} from "../DataServices/AuthDataService";
+} from '../DataServices/AuthDataService';
+import { Button } from '../../Common/Components/Button';
+import { HeaderOne } from '../../Common/Components/HeaderOne';
+import { Paragraph } from '../../Common/Components/Paragraph';
+import { Span } from '../../Common/Components/Span';
 
 interface IAuthSectionProps {
     buttonsDisabled: (bool: boolean) => void;

@@ -7,12 +7,6 @@
 .vs
 .vscode
 
-./clients/solidclient/node_modules
-./clients/solidclient/dist
-./clients/solidclient/.dockerignore
-./clients/solidclient/Dockerfile
-./clients/solidclient/.git
-
 ./clients/reactclient/node_modules
 ./clients/reactclient/dist
 ./clients/reactclient/.dockerignore
