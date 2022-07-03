@@ -46,9 +46,7 @@ function setupHeaders<Req>(method: HttpMethod, data?: Req): RequestInit {
       'X-XSRF-TOKEN': getCsrfTokenFromCookie("XSRF-TOKEN"),
       'X-Forwarded-Host': host
     },
-    body: JSON.stringify(data),
-    mode: 'cors',
-    credentials: 'include',
+    body: JSON.stringify(data)
   }
 
   return headers;

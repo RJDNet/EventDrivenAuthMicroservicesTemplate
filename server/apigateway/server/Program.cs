@@ -46,7 +46,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddAuthentication();
 
-builder.Services.AddCors();
+//builder.Services.AddCors();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -76,16 +76,6 @@ builder.Services.AddSingleton<IRpcClientService, RpcClientService>();
 builder.Services.AddHostedService<RpcClientBackgroundService>();
 
 var app = builder.Build();
-
-app.UseCors(configurePolicy => 
-{
-    if(allowedClients != null) {
-        configurePolicy.WithOrigins("http://localhost:3000", "http://localhost:3001");
-    }
-    configurePolicy.AllowAnyMethod();
-    configurePolicy.AllowCredentials();
-    configurePolicy.AllowAnyHeader();
-});
 
 app.UseAuthentication();
 app.UseAuthorization();    
