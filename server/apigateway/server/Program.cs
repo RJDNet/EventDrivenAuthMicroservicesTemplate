@@ -52,8 +52,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 
     options.Cookie.Name = cookieName;
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
     options.SlidingExpiration = true;
 });
@@ -99,7 +99,7 @@ app.Use(async (context, next) =>
             new CookieOptions { 
                 HttpOnly = false, 
                 SameSite = SameSiteMode.Strict, 
-                Secure = true 
+                Secure = false 
             }
         );
     }
