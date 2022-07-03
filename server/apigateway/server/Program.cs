@@ -46,8 +46,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddAuthentication();
 
-//builder.Services.AddCors();
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     string cookieName = "auth_cookie";
