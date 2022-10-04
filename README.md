@@ -55,26 +55,26 @@ Remove all images by running command: docker compose down -rmi all
 # Useful Commands
 
 ### General
-cd reverseproxy/clients/reactclient
-cd server/apigateway/server
-cd server/microservices/csharpmicroservice/server
-cd server/microservices/nodemicroservice/server
+cd reverseproxy/clients/reactclient <br />
+cd server/apigateway/server <br />
+cd server/microservices/csharpmicroservice/server <br />
+cd server/microservices/nodemicroservice/server <br />
 cd server/microservices/pythonmicroservice/server
 
 yarn start
 dotnet run
 
 ### Environment
-dotnet run --environment Production
+dotnet run --environment Production <br />
 dotnet run --launch-profile "SampleApp"
 
 ### DB Migrations
-dotnet ef migrations add InitialCreate
+dotnet ef migrations add InitialCreate <br />
 dotnet ef migrations remove
 
-dotnet ef database update
+dotnet ef database update <br />
 dotnet ef database drop
 
 ### Docker
-docker compose up
+docker compose up <br />
 docker compose down --rmi all
