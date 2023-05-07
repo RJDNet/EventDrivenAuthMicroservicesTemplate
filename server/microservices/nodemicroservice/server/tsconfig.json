@@ -1,9 +1,9 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
       "types": [
         "node",
         "amqplib"
       ],
     },
-  }
+}
   

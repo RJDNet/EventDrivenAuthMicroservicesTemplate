@@ -24,7 +24,7 @@ export async function httpFetch<Req, Res>(url: string, method: HttpMethod, data?
 
   try {
       const fetchData: Response = await fetch(`${host}${url}`, headers);
-      const jsonData: Promise<Res> = await fetchData.json();
+      const jsonData: Res = await fetchData.json() as Res;
       
       if(fetchData.status === 200) {
         return jsonData;

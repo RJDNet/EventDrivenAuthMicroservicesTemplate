@@ -53,6 +53,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.Name = cookieName;
     options.Cookie.HttpOnly = true;
     options.Cookie.SameSite = SameSiteMode.Strict;
+    // Should be "Always" in production to only allow HTTPS
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
     options.SlidingExpiration = true;

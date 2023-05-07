@@ -4,7 +4,7 @@
   "description": "nodemicroservice for microservices template",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "vite-node server.ts"
   },
   "author": "Russ D",
   "license": "ISC",
@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "@types/amqplib": "^0.8.2",
-    "@types/node": "^18.0.0"
+    "@types/node": "^20.1.0",
+    "typescript": "^5.0.4",
+    "vite-node": "^0.31.0"
   }
 }

@@ -8,7 +8,7 @@ Note: Regarding communication and microservices, there are multiple ways to hand
 - What data needs to be available to the clients? 
 - Do some microservices need to talk to each other? 
 
-Choices need to be made whether it is public and using synchronous http request/response, or asynchronous message based mechanisms using amqp, as examples. The various different techniques used (topics, routing, rpc, direct, fanout, synchonous, asynchronous, message broker, pubsub etc) depends on your requiremenets, and often times, multiple of these techniques are used within the same architecture.
+Choices need to be made whether it is public and using synchronous http request/response, or asynchronous message based mechanisms using amqp. The various different techniques used (topics, routing, rpc, direct, fanout, synchonous, asynchronous, message broker, pubsub etc) depends on your requirements, and often times, multiple of these techniques are used within the same architecture.
 
 Note: Often times, an abstraction over a message broker like MassTransit might be used instead of just using RabbitMQ like in this template, or a service that deals with messaging in the cloud using AWS or Azure for example.
 
@@ -40,7 +40,7 @@ Wait 1 minute for everything to startup (database population and services curren
 
 ### Shut Down
 Ctrl-c the terminal which is running docker compose.
-Remove all images by running command: docker compose down -rmi all 
+Remove all images by running command: docker compose down --rmi all 
 
 # Technologies Used
 

@@ -17,7 +17,7 @@ export interface IAuthRes {
 
 const authUrl: string = 'api/authcookies';
 
-export async function logInData(data: IAuthReq): Promise<IAuthRes> {
+export async function logInData(data?: IAuthReq): Promise<IAuthRes> {
     const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/login`, 
         HttpMethod.POST,
@@ -36,7 +36,7 @@ export async function logOutData(): Promise<IAuthRes> {
     return result;
 }
 
-export async function registerData(data: IAuthReq): Promise<IAuthRes> {
+export async function registerData(data?: IAuthReq): Promise<IAuthRes> {
     const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/register`, 
         HttpMethod.POST,
@@ -46,7 +46,7 @@ export async function registerData(data: IAuthReq): Promise<IAuthRes> {
     return result;
 }
 
-export async function deleteUserData(data: IAuthReq): Promise<IAuthRes> {
+export async function deleteUserData(data?: IAuthReq): Promise<IAuthRes> {
     const result: IAuthRes = await httpFetch<IAuthReq, IAuthRes>(
         `${authUrl}/deleteuser`, 
         HttpMethod.DELETE, 

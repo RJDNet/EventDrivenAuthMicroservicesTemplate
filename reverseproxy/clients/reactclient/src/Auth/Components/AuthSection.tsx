@@ -15,6 +15,8 @@ import { HeaderOne } from '../../Common/Components/HeaderOne';
 import { Paragraph } from '../../Common/Components/Paragraph';
 import { Span } from '../../Common/Components/Span';
 
+type AuthFn = (data?: IAuthState) =>  Promise<IAuthRes>;
+
 interface IAuthSectionProps {
     buttonsDisabled: (bool: boolean) => void;
     authButtonDisabled: boolean;
@@ -55,24 +57,6 @@ function AuthSection(props: IAuthSectionProps): JSX.Element {
 
         return () => clearTimeout(timeout);
     }, [user.message]);  
-
-    async function logIn(data: IAuthState): Promise<void> {
-        const result: IAuthRes = await logInData(data);
-        setUser((prev) => ({ ...prev, ...result }));
-        buttonsDisabled(true);
-    }
-
-    async function logOut(): Promise<void> {
-        const result: IAuthRes = await logOutData();
-        setUser((prev) => ({ ...prev, ...result }));
-        buttonsDisabled(true);
-    }
-
-    async function register(data: IAuthState): Promise<void> {
-        const result: IAuthRes = await registerData(data);
-        setUser((prev) => ({ ...prev, ...result }));
-        buttonsDisabled(true);
-    }
     
     function deleteUser(data: IAuthState): void {
         deleteUserData(data);
@@ -80,6 +64,12 @@ function AuthSection(props: IAuthSectionProps): JSX.Element {
             ...prev, 
             loggedIn: false 
         }));
+        buttonsDisabled(true);
+    }
+
+    async function authFunctions(fn: AuthFn, data?: IAuthState): Promise<void> {
+        const result: IAuthRes = await fn(data);
+        setUser((prev) => ({ ...prev, ...result }));
         buttonsDisabled(true);
     }
 
@@ -106,20 +96,20 @@ function AuthSection(props: IAuthSectionProps): JSX.Element {
             <br/>
             <Button 
                 disable={user.loggedIn || authButtonDisabled}
-                onClick={() => logIn(userForm)}
+                onClick={() => authFunctions(logInData, userForm)}
             >
                 Log In
             </Button>
             <Button 
                 disable={!user.loggedIn || authButtonDisabled}
-                onClick={() => logOut()}
+                onClick={() => authFunctions(logOutData)}
             >
                 Log Out
             </Button>
             <br/>
             <Button 
                 disable={user.loggedIn || authButtonDisabled}
-                onClick={() => register(userForm)}
+                onClick={() => authFunctions(registerData, userForm)}
             >
                 Register
             </Button>

@@ -3,6 +3,6 @@
 set -e
 
 sleep 30
-run_cmd="node server.ts"
+run_cmd="npm run start"
 
 exec $run_cmd

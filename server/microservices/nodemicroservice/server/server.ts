@@ -1,13 +1,18 @@
-var amqp = require('amqplib/callback_api');
+var amqpConnect = require('amqplib/callback_api');
+var amqpCredentials = require('amqplib');
 
-const topics = ['csharpmicroservice.test1', 'csharpmicroservice.test2'];
-const exchangeName = 'micro_exchange';
-const queueName = 'rpc_queue';
-const host = 'messagebroker';
+interface Options {
+  credentials: string;
+}
 
-const opt = { credentials: require('amqplib').credentials.plain('admin', 'admin') }
+const topics: string[] = ['csharpmicroservice.test1', 'csharpmicroservice.test2'];
+const exchangeName: string = 'micro_exchange';
+const queueName: string = 'rpc_queue';
+const host: string = 'messagebroker';
 
-amqp.connect(`amqp://${host}`, opt, function(error0, connection) {
+const opt: Options = { credentials: amqpCredentials.credentials.plain('admin', 'admin') };
+
+amqpConnect.connect(`amqp://${host}`, opt, function(error0, connection) {
   if (error0) {
     throw error0;
   }

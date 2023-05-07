@@ -18,7 +18,7 @@ public class MessagingTestController : ControllerBase
         _rpcClient = rpcClient;
     }
 
-    // POST: api/messagingtest/rpctester
+    // POST: api/messagingtest/rpcmessagetest
     [HttpPost]
     public IActionResult RpcMessageTest() {
         var response = _rpcClient.SendRpcMessage("Test Rpc Message.");
@@ -27,7 +27,7 @@ public class MessagingTestController : ControllerBase
         return Ok();
     }
 
-    // POST: api/messagingtest/messagealltester
+    // POST: api/messagingtest/messagetest
     [HttpPost]
     public IActionResult MessageTest() {
         _rpcClient.SendMessage("Send Message to services via (topic).");
